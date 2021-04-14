@@ -24,12 +24,12 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/nehajangid", {
 app.use(express.static(path.join(__dirname, "build")));
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", index.html));
-});
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
+});
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", index.html));
 });
 
 app.use((err, req, res, next) => {
